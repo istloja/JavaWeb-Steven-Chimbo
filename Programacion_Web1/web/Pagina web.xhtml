@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      <h:head>
+            <h:body style="text-align:center">
+                <p:growl id="mensajes" showDetail="true" life="2000"></p:growl>
+            <h:form>
+                <p:panel header="Ingrese al sistema " style="width:300px"></p:panel>
+      <h:panelGrid columns="2" cellpadding="5">
+          <h:outputLabel for="admin" value="Usuario:"></h:outputLabel>
+          <p:inputText value="#{usuario.nombre}" id="username"
+                     required="true" label="username" ></p:inputText>
+          <h:outputLabel for="1998" value="Contraseña" ></h:outputLabel>
+          <p:password value="#{usuario.clave}" id="password" required="true"
+                    label="password" ></p:password>
+        <f:facet name="footer">
+          <p:commandButton id="loginButton" value="Aceptar"
+                           actionListener="#{usuario.login()}"></p:commandButton>
+        </f:facet>
+      </h:panelGrid>
+  </h:form>
+</h:body>
+          
+          
+          
+          
+    </h:head>
+
+    <h:body>
+        <div id="top" style="background: white">
+            <ui:insert name="top">Pagina web del ISTL Desarrollo de software</ui:insert>
+             <center><h1>FORMULARIO DE REGISTRO</h1></center>
+        <br/>
+        <center>
+            <h3 style="background: blue">Nombre </h3>
+        <input type="text" name="" value="" />
+        
+        <h3 style="background: blue">Apellido</h3>
+        <input type="text" name="" value="" />
+        
+        <h3 style="background: blue" >Correo</h3>
+        <input type="text" name="" value="" />
+        
+        <h3 style="background: blue">Direccion</h3>
+        <input type="text" name="" value="" />
+        
+        <h3 style="background: blue">Telefono</h3>
+        <input type="text" name="" value="" />
+        
+        <h3 style="background: blue">Provincia</h3>
+       
+        <select name="Provincia" size="4">
+            
+            <option>Azuay</option>
+            <option>Bolívar</option>
+            <option>Cañar</option>
+            <option>Carchi</option>
+            <option>Chimborazo</option>
+            <option>Cotopaxi</option>
+            <option>El Oro</option>
+            <option>Esmeraldas</option>
+            <option>Galápagos</option>
+            <option>Guayas</option>
+            <option>Imbabura</option>
+            <option>Loja</option>
+            <option>Los Ríos</option>
+            <option>Manabí</option>
+            <option>Morona Santiago</option>
+            <option>Napo</option>
+            <option>Orellana</option>
+            <option>Pastaza</option>
+            <option>Pichincha</option>
+            <option>Santa Elena</option>
+            <option>Santo Domingo de los Tsáchilas</option>
+            <option>Sucumbíos</option>
+            <option>Tungurahua</option>
+            <option>Zamora Chinchipe</option>
+        </select>
+        
+        <input type="submit" value="REGISTRAR" /></center> 
+    
+        <h/>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Licencia Creative Commnos</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

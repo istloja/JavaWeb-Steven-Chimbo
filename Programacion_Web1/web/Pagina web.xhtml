@@ -6,30 +6,28 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-      <h:head>
-            <h:body style="text-align:center">
-                <p:growl id="mensajes" showDetail="true" life="2000"></p:growl>
-            <h:form>
-                <p:panel header="Ingrese al sistema " style="width:300px"></p:panel>
-      <h:panelGrid columns="2" cellpadding="5">
-          <h:outputLabel for="admin" value="Usuario:"></h:outputLabel>
-          <p:inputText value="#{usuario.nombre}" id="username"
-                     required="true" label="username" ></p:inputText>
-          <h:outputLabel for="1998" value="Contraseña" ></h:outputLabel>
-          <p:password value="#{usuario.clave}" id="password" required="true"
-                    label="password" ></p:password>
-        <f:facet name="footer">
-          <p:commandButton id="loginButton" value="Aceptar"
-                           actionListener="#{usuario.login()}"></p:commandButton>
-        </f:facet>
-      </h:panelGrid>
-  </h:form>
-</h:body>
-          
-          
-          
-          
-    </h:head>
+    
+ 
+ 
+<h:form>        
+    
+     
+    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+     
+    <p:dialog header="Ingreso al sistema" widgetVar="dlg" resizable="false">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="username" value="Usuario:" />
+            <p:inputText id="username" value="#{usuario.username}" required="true" label="Usuario" />
+             
+            <h:outputLabel for="password" value="Contraseña:" />
+            <p:password id="password" value="#{usuario.password}" required="true" label="Contraseña" />
+             
+            <f:facet name="footer">
+                <p:commandButton value="Verificar" update="growl" action="#{usuario.login()}"/>
+            </f:facet>  
+        </h:panelGrid>
+    </p:dialog>    
+</h:form>
 
     <h:body>
         <div id="top" style="background: white">

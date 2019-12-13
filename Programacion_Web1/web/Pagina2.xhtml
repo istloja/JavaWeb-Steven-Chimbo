@@ -12,13 +12,15 @@
             <ui:define name="content">
                 <h:form>
                     <p:panelGrid>                        
-                        <p:selectCheckboxMenu id="menu" value="#{primerBean.selectedCities}" label="cities">
-                            <f:selectItems value="#{primerBean.selectedCities}"></f:selectItems>                                                        
-                        </p:selectCheckboxMenu>                        
+                        <p:selectManyCheckbox id="check1" value="#{primerBean.selectedConsoles}" label="cities">
+                            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                            <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                        </p:selectManyCheckbox>                       
                     </p:panelGrid>                    
-                </h:form>
-
-            </ui:define>         
+                </h:form>               
+                
+            </ui:define>           
 
         </ui:composition>
 

@@ -101,18 +101,20 @@ public class filter implements Filter {
         HttpServletResponse servletResponse = (HttpServletResponse)response;
         boolean logeo=false;
         boolean redireccion = true;
-        String paginas[]={"/sga/Admin.xhtml","/sga/Pagina1.xhtml","/sga/welcomePrimefaces.xhtml"};
+        String paginas[]={"/sga/Login.xhtml","/sga/Pagina1.xhtml","/sga/welcomePrimefaces.xhtml"};
         HttpSession session= servletRequest.getSession(true);
-        Modelo usu = (Modelo) session.getAttribute("usuario");
+        Modelo usu = (Modelo) session.getAttribute("Usuario");
         
         if(usu !=null){
-            chain.doFilter(request, response);
+            System.out.println("usuario registrado");
+            redireccion=false;
         }else{
             for(String pagina:paginas ){
                 if(servletRequest.getRequestURI().contains(pagina)){
                 redireccion=false;
                 }
          }
+            System.out.println("usuario no registrado");
         }
         
         /*if (logeo){
@@ -125,8 +127,9 @@ public class filter implements Filter {
             }
         }*/
         if(redireccion){
-            servletResponse.sendRedirect(servletRequest.getContextPath()+"/sga/Pagina1.xhtml");
+            servletResponse.sendRedirect(servletRequest.getContextPath()+"/sga/Login.xhtml");
         }else{
+            System.out.println("entra aqui");
             chain.doFilter(request, response);        
         }              
        

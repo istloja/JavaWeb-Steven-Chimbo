@@ -1,59 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package beans;
 
-
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-
-
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
- * @author Usuario
+ * @author CRISTIAN
  */
 @Named(value = "primerBean")
 @ViewScoped
 public class primerBean implements Serializable {
-    
+
+    /**
+     * Creates a new instance of primerBean
+     */
     private int valor1;
-    private String nombre;
-    private String[] selectedCities;
-    private List<String> cities;
-    private String[] selectedConsoles;
-    private String username;     
+    private String name;
+    private Date date1;
+    private Date date2;
+    private Date date3;
+    private Date date4;
+    private Date date5;
+    private Date date6;
+    private Date date7;
+    private Date date8;
+    private Date date9;
+    private Date dateDe;
+    private Date date10;
+    private Date date11;
+    private Date date12;
+    private Date date13;
+    private Date date14;
+    private Date date15;
+    private Date date16;
+    private Date dateTimeDe;
+    private List<Date> multi;
+    private List<Date> range;
+    private List<Date> invalidDates;
+    private List<Integer> invalidDays;
+    private Date minDate;
+    private Date maxDate;
+    private Date minTime;
+    private Date maxTime;
+    private Date minDateTime;
+    private Date maxDateTime;
+    private String username;
     private String password;
     private List<Modelo> listaU;
-    
-  
-    
-    @PostConstruct    
-      
+
+    @PostConstruct
     public void init() {
-        cities = new ArrayList<String>();
-        cities.add("Miami");
-        cities.add("London");
-        cities.add("Paris");
-        cities.add("Istanbul");
-        cities.add("Berlin");
-        cities.add("Barcelona");
-        cities.add("Rome");
-        cities.add("Brasilia");
-        cities.add("Amsterdam");
-    }
+        invalidDates = new ArrayList<>();
+        Date today = new Date();
+        invalidDates.add(today);
+        long oneDay = 24 * 60 * 60 * 1000;
+        for (int i = 0; i < 5; i++) {
+            invalidDates.add(new Date(invalidDates.get(i).getTime() + oneDay));
+        }
 
-    public List<Modelo> getListaU() {
-        return listaU;
-    }
+        invalidDays = new ArrayList<>();
+        invalidDays.add(0);
+        /* the first day of week is disabled */
+        invalidDays.add(3);
 
-    public void setListaU(List<Modelo> listaU) {
-        this.listaU = listaU;
+        minDate = new Date(today.getTime() - (365 * oneDay));
+        maxDate = new Date(today.getTime() + (365 * oneDay));
+
+        Calendar tmp = Calendar.getInstance();
+        tmp.set(Calendar.HOUR_OF_DAY, 9);
+        tmp.set(Calendar.MINUTE, 0);
+        tmp.set(Calendar.SECOND, 0);
+        tmp.set(Calendar.MILLISECOND, 0);
+        minTime = tmp.getTime();
+
+        tmp = Calendar.getInstance();
+        tmp.set(Calendar.HOUR_OF_DAY, 17);
+        tmp.set(Calendar.MINUTE, 0);
+        tmp.set(Calendar.SECOND, 0);
+        tmp.set(Calendar.MILLISECOND, 0);
+        maxTime = tmp.getTime();
+
+        minDateTime = new Date(today.getTime() - (7 * oneDay));
+        maxDateTime = new Date(today.getTime() + (7 * oneDay));
+
+        dateDe = GregorianCalendar.getInstance().getTime();
+        dateTimeDe = GregorianCalendar.getInstance().getTime();
     }
 
     public String getUsername() {
@@ -71,106 +120,288 @@ public class primerBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    public String login() {
-        FacesMessage message = null;
-        String url="";
-      
-        for(Modelo mo: listaU){
-             if(username != null && username.equals(mo.getUsuario()) && password != null && password.equals(mo.getContrasña())) {
-                HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                sesion.setAttribute("Usuario", mo);
-                if(mo.getRol().equals("Administrador")){
-                    url = "Pagina3.xhtml?faces-redirect=true";
-                }else{
-                    if(mo.getRol().equals("Estudante")){
-                    url="Estudiante.xhtml?faces-redirect=true";
-                    }else{
-                        if(mo.getRol().equals("Docente")){
-                            url="Docente.xhtml?faces-redirect=true";
 
-                        
+    public String login() {
+        String url = "";
+        FacesMessage message = null;
+        boolean loggedIn = false;
+        for (Modelo user : listaU) {
+            System.out.println("usuario y contraseña son"+username+password);
+            if (username != null && username.equals(user.getUsuario()) && password != null && password.equals(user.getContrasña())) {
+                HttpSession sesion=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true); 
+                sesion.setAttribute("usuario", user);
+                if (user.getRol().equals("Administrativo")) {
+                    url = "Docente.xhtml?faces-redirect=true";
+                } else {
+                    if (user.getRol().equals("Estudiante")) {
+                        url = "Estudiante.xhtml?faces-redirect=true";
+                    } else {
+                        if (user.getRol().equals("Docente")) {
+                            url = "Docente.xhtml?faces-redirect=true";
                         }
                     }
                 }
-        } else{
-                 message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
-             FacesContext.getCurrentInstance().addMessage(null, message);
-             }
+            } else {
+                loggedIn = false;
+                message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Datos incorrectos");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+                PrimeFaces.current().ajax().addCallbackParam("loggedIn", loggedIn);
+            }
         }
+
         return url;
-        
-    }   
-
-    
-    
-    
-    
-
-    public String[] getSelectedConsoles() {
-        return selectedConsoles;
-        
     }
 
-    public void setSelectedConsoles(String[] selectedConsoles) {
-        this.selectedConsoles = selectedConsoles;
+    public Date getDate1() {
+        return date1;
     }
 
-    public String[] getSelectedCities() {
-        return selectedCities;
+    public void setDate1(Date date1) {
+        this.date1 = date1;
     }
 
-    public void setSelectedCities(String[] selectedCities) {
-        this.selectedCities = selectedCities;
+    public Date getDate2() {
+        return date2;
     }
 
-    public List<String> getCities() {
-        return cities;
+    public void setDate2(Date date2) {
+        this.date2 = date2;
     }
 
-    public void setCities(List<String> cities) {
-        this.cities = cities;
+    public Date getDate3() {
+        return date3;
     }
 
-    
-    public primerBean() {
-        listaU  = new ArrayList<>();
-        listaU.add(new Modelo("Steve", "steve", "admin1", "Estudiante"));
-        listaU.add(new Modelo("Cesar", "Cabrera", "admin", "Estudiante"));
-        listaU.add(new Modelo("Chimbo", "steven", "steve", "Estudiante"));
-        listaU.add(new Modelo("Dario", "Dario"," 1234", "Estudiante"));   
-        listaU.add(new Modelo("Alexis", "Alexis", "4567", "Estudiante"));
-        listaU.add(new Modelo("Joan", "Joan", "789", "Estudiante"));
-        listaU.add(new Modelo("Cristian", "Cristian", "1234", "Estudiante"));
-        listaU.add(new Modelo("Yeferson", "Yeferson", "4567", "Docente"));
-                      
-        
-        
-                
+    public void setDate3(Date date3) {
+        this.date3 = date3;
     }
 
-    public int getValor() {
+    public Date getDate4() {
+        return date4;
+    }
+
+    public void setDate4(Date date4) {
+        this.date4 = date4;
+    }
+
+    public Date getDate5() {
+        return date5;
+    }
+
+    public void setDate5(Date date5) {
+        this.date5 = date5;
+    }
+
+    public Date getDate6() {
+        return date6;
+    }
+
+    public void setDate6(Date date6) {
+        this.date6 = date6;
+    }
+
+    public Date getDate7() {
+        return date7;
+    }
+
+    public void setDate7(Date date7) {
+        this.date7 = date7;
+    }
+
+    public Date getDate8() {
+        return date8;
+    }
+
+    public void setDate8(Date date8) {
+        this.date8 = date8;
+    }
+
+    public Date getDate9() {
+        return date9;
+    }
+
+    public void setDate9(Date date9) {
+        this.date9 = date9;
+    }
+
+    public Date getDate10() {
+        return date10;
+    }
+
+    public void setDate10(Date date10) {
+        this.date10 = date10;
+    }
+
+    public Date getDate11() {
+        return date11;
+    }
+
+    public void setDate11(Date date11) {
+        this.date11 = date11;
+    }
+
+    public Date getDate12() {
+        return date12;
+    }
+
+    public void setDate12(Date date12) {
+        this.date12 = date12;
+    }
+
+    public Date getDate13() {
+        return date13;
+    }
+
+    public void setDate13(Date date13) {
+        this.date13 = date13;
+    }
+
+    public Date getDate14() {
+        return date14;
+    }
+
+    public void setDate14(Date date14) {
+        this.date14 = date14;
+    }
+
+    public List<Date> getMulti() {
+        return multi;
+    }
+
+    public void setMulti(List<Date> multi) {
+        this.multi = multi;
+    }
+
+    public List<Date> getRange() {
+        return range;
+    }
+
+    public void setRange(List<Date> range) {
+        this.range = range;
+    }
+
+    public List<Date> getInvalidDates() {
+        return invalidDates;
+    }
+
+    public void setInvalidDates(List<Date> invalidDates) {
+        this.invalidDates = invalidDates;
+    }
+
+    public List<Integer> getInvalidDays() {
+        return invalidDays;
+    }
+
+    public void setInvalidDays(List<Integer> invalidDays) {
+        this.invalidDays = invalidDays;
+    }
+
+    public Date getMinDate() {
+        return minDate;
+    }
+
+    public void setMinDate(Date minDate) {
+        this.minDate = minDate;
+    }
+
+    public Date getMaxDate() {
+        return maxDate;
+    }
+
+    public void setMaxDate(Date maxDate) {
+        this.maxDate = maxDate;
+    }
+
+    public Date getDateTimeDe() {
+        return dateTimeDe;
+    }
+
+    public void setDateTimeDe(Date dateTimeDe) {
+        this.dateTimeDe = dateTimeDe;
+    }
+
+    public Date getDateDe() {
+        return dateDe;
+    }
+
+    public void setDateDe(Date dateDe) {
+        this.dateDe = dateDe;
+    }
+
+    public Date getDate15() {
+        return date15;
+    }
+
+    public void setDate15(Date date15) {
+        this.date15 = date15;
+    }
+
+    public Date getMinTime() {
+        return minTime;
+    }
+
+    public void setMinTime(Date minTime) {
+        this.minTime = minTime;
+    }
+
+    public Date getMaxTime() {
+        return maxTime;
+    }
+
+    public void setMaxTime(Date maxTime) {
+        this.maxTime = maxTime;
+    }
+
+    public Date getDate16() {
+        return date16;
+    }
+
+    public void setDate16(Date date16) {
+        this.date16 = date16;
+    }
+
+    public Date getMinDateTime() {
+        return minDateTime;
+    }
+
+    public void setMinDateTime(Date minDateTime) {
+        this.minDateTime = minDateTime;
+    }
+
+    public Date getMaxDateTime() {
+        return maxDateTime;
+    }
+
+    public void setMaxDateTime(Date maxDateTime) {
+        this.maxDateTime = maxDateTime;
+    }
+
+    public String getName() {
+        return "Hola " + name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getValor1() {
         return valor1;
     }
 
-    public void setValor(int valor) {
-        this.valor1 = valor;
+    public void setValor1(int valor1) {
+        this.valor1 = valor1;
     }
 
-    public String getNombre() {
-        return "Hola " + nombre;
+    public primerBean() {
+        listaU = new ArrayList<>();
+        listaU.add(new Modelo("Cristian", "black", "1234", "Estudiante"));
+        listaU.add(new Modelo("Cesar", "chess", "1234", "Administrativo"));
+        listaU.add(new Modelo("Steven", "chimbomba", "1234", "Docente"));
+        listaU.add(new Modelo("Dario", "donmari", "1234", "Estudiante"));
+        listaU.add(new Modelo("Steve", "churon", "1234", "Docente"));
+        listaU.add(new Modelo("Joan", "peña", "1234", "Estudiante"));
+        listaU.add(new Modelo("Alexis", "ortega", "1234", "Estudiante"));
+        listaU.add(new Modelo("Jefferson", "ing", "1234", "Docente"));
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-  
- 
-      
-
-    
-    
-    
 }

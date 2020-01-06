@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./PlantillaOrganizador.xhtml">
+
+            <ui:define name="top">
+                <h:form>
+                    <p:megaMenu orientation="Horizontal" style="margin-top:20px">
+                        <p:submenu label="Nuevo Prestamo">
+                            <p:menuitem value="Registrar Prestamo"/>                 
+                        </p:submenu>
+                        <p:submenu label="Devoluciones">
+                            <p:menuitem value="Sin devolución"/>
+                            <p:menuitem value="Fecha Devolucion"/>
+                        </p:submenu>
+                        <p:submenu label="Prestamos Frecuentes">
+
+                            <p:submenu label="Categorias">
+                                <p:menuitem value="Acción"/>
+                                <p:menuitem value="Drama"/>
+                            </p:submenu>               
+                        </p:submenu>           
+                    </p:megaMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+
+            </ui:define>
+
+            <ui:define name="bottom">
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -100,7 +100,7 @@ public class filter implements Filter {
         HttpServletRequest servletRequest = (HttpServletRequest)request;
         HttpServletResponse servletResponse = (HttpServletResponse)response;
         boolean logeo=false;
-        boolean redireccion = true;
+        boolean redireccion = false;
         String paginas[]={"/sga/Login.xhtml","/sga/Pagina1.xhtml","/sga/welcomePrimefaces.xhtml"};
         HttpSession session= servletRequest.getSession(true);
         Modelo usu = (Modelo) session.getAttribute("Usuario");

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDocenteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDocenteLabel_idDocente}" for="idDocente" />
+                    <h:inputText id="idDocente" value="#{docenteController.selected.idDocente}" title="#{bundle.EditDocenteTitle_idDocente}" required="true" requiredMessage="#{bundle.EditDocenteRequiredMessage_idDocente}"/>
+                    <h:outputLabel value="#{bundle.EditDocenteLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{docenteController.selected.nombre}" title="#{bundle.EditDocenteTitle_nombre}" required="true" requiredMessage="#{bundle.EditDocenteRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditDocenteLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{docenteController.selected.apellido}" title="#{bundle.EditDocenteTitle_apellido}" required="true" requiredMessage="#{bundle.EditDocenteRequiredMessage_apellido}"/>
+                    <h:outputLabel value="#{bundle.EditDocenteLabel_cargo}" for="cargo" />
+                    <h:inputText id="cargo" value="#{docenteController.selected.cargo}" title="#{bundle.EditDocenteTitle_cargo}" required="true" requiredMessage="#{bundle.EditDocenteRequiredMessage_cargo}"/>
+                    <h:outputLabel value="#{bundle.EditDocenteLabel_bibliotecaidBiblioteca}" for="bibliotecaidBiblioteca" />
+                    <h:selectOneMenu id="bibliotecaidBiblioteca" value="#{docenteController.selected.bibliotecaidBiblioteca}" title="#{bundle.EditDocenteTitle_bibliotecaidBiblioteca}" required="true" requiredMessage="#{bundle.EditDocenteRequiredMessage_bibliotecaidBiblioteca}">
+                        <f:selectItems value="#{bibliotecaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{docenteController.update}" value="#{bundle.EditDocenteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDocenteViewLink}"/>
+                <br />
+                <h:commandLink action="#{docenteController.prepareList}" value="#{bundle.EditDocenteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDocenteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

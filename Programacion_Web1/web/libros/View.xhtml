@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LibrosViewDlg" widgetVar="LibrosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLibrosTitle}">
+            <h:form id="LibrosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{librosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLibrosLabel_idLibros}"/>
+                        <h:outputText value="#{librosController.selected.idLibros}" title="#{bundle.ViewLibrosTitle_idLibros}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_nombre}"/>
+                        <h:outputText value="#{librosController.selected.nombre}" title="#{bundle.ViewLibrosTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_autor}"/>
+                        <h:outputText value="#{librosController.selected.autor}" title="#{bundle.ViewLibrosTitle_autor}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_genero}"/>
+                        <h:outputText value="#{librosController.selected.genero}" title="#{bundle.ViewLibrosTitle_genero}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_editorial}"/>
+                        <h:outputText value="#{librosController.selected.editorial}" title="#{bundle.ViewLibrosTitle_editorial}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LibrosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

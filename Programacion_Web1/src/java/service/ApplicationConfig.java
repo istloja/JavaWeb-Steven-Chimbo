@@ -10,7 +10,7 @@ import javax.ws.rs.core.Application;
 
 /**
  *
- * @author AlexisO
+ * @author usuario
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -29,9 +29,13 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(service.AutorFacadeREST.class);
+        resources.add(service.CategoriaFacadeREST.class);
+        resources.add(service.EditorialFacadeREST.class);
         resources.add(service.LibrosFacadeREST.class);
         resources.add(service.PersonaFacadeREST.class);
         resources.add(service.PrestamoFacadeREST.class);
+        resources.add(service.PrestamosFacadeREST.class);
     }
     
 }

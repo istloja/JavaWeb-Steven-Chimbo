@@ -5,7 +5,7 @@
  */
 package service;
 
-import Utilidades.Persona;
+import Modelo.Persona;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,13 +22,13 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author AlexisO
+ * @author usuario
  */
 @Stateless
-@Path("utilidades.persona")
+@Path("modelo.persona")
 public class PersonaFacadeREST extends AbstractFacade<Persona> {
 
-    @PersistenceContext(unitName = "ProgramacionWepAlexisPU")
+    @PersistenceContext(unitName = "BibliotecaPU")
     private EntityManager em;
 
     public PersonaFacadeREST() {
@@ -64,7 +64,7 @@ public class PersonaFacadeREST extends AbstractFacade<Persona> {
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Persona> findAll() {
         return super.findAll();
     }

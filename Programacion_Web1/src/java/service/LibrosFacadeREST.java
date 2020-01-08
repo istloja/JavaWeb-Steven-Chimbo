@@ -5,7 +5,7 @@
  */
 package service;
 
-import Utilidades.Libros;
+import Modelo.Libros;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,13 +22,13 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author AlexisO
+ * @author usuario
  */
 @Stateless
-@Path("utilidades.libros")
+@Path("modelo.libros")
 public class LibrosFacadeREST extends AbstractFacade<Libros> {
 
-    @PersistenceContext(unitName = "ProgramacionWepAlexisPU")
+    @PersistenceContext(unitName = "BibliotecaPU")
     private EntityManager em;
 
     public LibrosFacadeREST() {
@@ -64,7 +64,7 @@ public class LibrosFacadeREST extends AbstractFacade<Libros> {
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Libros> findAll() {
         return super.findAll();
     }

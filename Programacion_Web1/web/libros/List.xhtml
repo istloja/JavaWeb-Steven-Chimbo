@@ -35,27 +35,39 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListLibrosTitle_nombre}"/>
+                                <h:outputText value="#{bundle.ListLibrosTitle_codigoLibro}"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
+                            <h:outputText value="#{item.codigoLibro}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListLibrosTitle_autor}"/>
+                                <h:outputText value="#{bundle.ListLibrosTitle_nombreLibro}"/>
                             </f:facet>
-                            <h:outputText value="#{item.autor}"/>
+                            <h:outputText value="#{item.nombreLibro}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListLibrosTitle_genero}"/>
+                                <h:outputText value="#{bundle.ListLibrosTitle_prestado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.genero}"/>
+                            <p:selectBooleanCheckbox value="#{item.prestado}" disabled="true"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListLibrosTitle_editorial}"/>
+                                <h:outputText value="#{bundle.ListLibrosTitle_autorIdAutor}"/>
                             </f:facet>
-                            <h:outputText value="#{item.editorial}"/>
+                            <h:outputText value="#{item.autorIdAutor}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLibrosTitle_categoriaIdCategoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoriaIdCategoria}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLibrosTitle_editorialIdEditorial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.editorialIdEditorial}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{librosController.prepareCreate}" update=":LibrosCreateForm" oncomplete="PF('LibrosCreateDialog').show()"/>

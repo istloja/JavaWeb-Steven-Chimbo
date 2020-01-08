@@ -12,14 +12,20 @@
             <h:form id="PersonaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPersonaLabel_idUsuario}"/>
-                        <h:outputText value="#{personaController.selected.idUsuario}" title="#{bundle.ViewPersonaTitle_idUsuario}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_idPersona}"/>
+                        <h:outputText value="#{personaController.selected.idPersona}" title="#{bundle.ViewPersonaTitle_idPersona}"/>
                         <h:outputText value="#{bundle.ViewPersonaLabel_cedula}"/>
                         <h:outputText value="#{personaController.selected.cedula}" title="#{bundle.ViewPersonaTitle_cedula}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_nombres}"/>
-                        <h:outputText value="#{personaController.selected.nombres}" title="#{bundle.ViewPersonaTitle_nombres}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_apellidos}"/>
-                        <h:outputText value="#{personaController.selected.apellidos}" title="#{bundle.ViewPersonaTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_nombre}"/>
+                        <h:outputText value="#{personaController.selected.nombre}" title="#{bundle.ViewPersonaTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_apellidoPaterno}"/>
+                        <h:outputText value="#{personaController.selected.apellidoPaterno}" title="#{bundle.ViewPersonaTitle_apellidoPaterno}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_apellidoMaterno}"/>
+                        <h:outputText value="#{personaController.selected.apellidoMaterno}" title="#{bundle.ViewPersonaTitle_apellidoMaterno}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_correo}"/>
+                        <h:outputText value="#{personaController.selected.correo}" title="#{bundle.ViewPersonaTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_telefono}"/>
+                        <h:outputText value="#{personaController.selected.telefono}" title="#{bundle.ViewPersonaTitle_telefono}"/>
                         <h:outputText value="#{bundle.ViewPersonaLabel_tipo}"/>
                         <h:outputText value="#{personaController.selected.tipo}" title="#{bundle.ViewPersonaTitle_tipo}"/>
                     </p:panelGrid>

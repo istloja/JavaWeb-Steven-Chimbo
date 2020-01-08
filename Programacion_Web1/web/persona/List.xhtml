@@ -19,7 +19,7 @@
                     <p:dataTable id="datalist" value="#{personaController.items}" var="item"
                                  selectionMode="single" selection="#{personaController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.idUsuario}"
+                                 rowKey="#{item.idPersona}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
@@ -29,9 +29,9 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_idUsuario}"/>
+                                <h:outputText value="#{bundle.ListPersonaTitle_idPersona}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idUsuario}"/>
+                            <h:outputText value="#{item.idPersona}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -41,15 +41,33 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_nombres}"/>
+                                <h:outputText value="#{bundle.ListPersonaTitle_nombre}"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombres}"/>
+                            <h:outputText value="#{item.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_apellidos}"/>
+                                <h:outputText value="#{bundle.ListPersonaTitle_apellidoPaterno}"/>
                             </f:facet>
-                            <h:outputText value="#{item.apellidos}"/>
+                            <h:outputText value="#{item.apellidoPaterno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_apellidoMaterno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellidoMaterno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_correo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.correo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

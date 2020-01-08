@@ -14,14 +14,18 @@
                     <p:panelGrid columns="2" rendered="#{librosController.selected != null}">
                         <h:outputText value="#{bundle.ViewLibrosLabel_idLibros}"/>
                         <h:outputText value="#{librosController.selected.idLibros}" title="#{bundle.ViewLibrosTitle_idLibros}"/>
-                        <h:outputText value="#{bundle.ViewLibrosLabel_nombre}"/>
-                        <h:outputText value="#{librosController.selected.nombre}" title="#{bundle.ViewLibrosTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewLibrosLabel_autor}"/>
-                        <h:outputText value="#{librosController.selected.autor}" title="#{bundle.ViewLibrosTitle_autor}"/>
-                        <h:outputText value="#{bundle.ViewLibrosLabel_genero}"/>
-                        <h:outputText value="#{librosController.selected.genero}" title="#{bundle.ViewLibrosTitle_genero}"/>
-                        <h:outputText value="#{bundle.ViewLibrosLabel_editorial}"/>
-                        <h:outputText value="#{librosController.selected.editorial}" title="#{bundle.ViewLibrosTitle_editorial}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_codigoLibro}"/>
+                        <h:outputText value="#{librosController.selected.codigoLibro}" title="#{bundle.ViewLibrosTitle_codigoLibro}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_nombreLibro}"/>
+                        <h:outputText value="#{librosController.selected.nombreLibro}" title="#{bundle.ViewLibrosTitle_nombreLibro}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_prestado}"/>
+                        <p:selectBooleanCheckbox value="#{librosController.selected.prestado}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_autorIdAutor}"/>
+                        <h:outputText value="#{librosController.selected.autorIdAutor}" title="#{bundle.ViewLibrosTitle_autorIdAutor}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_categoriaIdCategoria}"/>
+                        <h:outputText value="#{librosController.selected.categoriaIdCategoria}" title="#{bundle.ViewLibrosTitle_categoriaIdCategoria}"/>
+                        <h:outputText value="#{bundle.ViewLibrosLabel_editorialIdEditorial}"/>
+                        <h:outputText value="#{librosController.selected.editorialIdEditorial}" title="#{bundle.ViewLibrosTitle_editorialIdEditorial}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="LibrosViewDialog.hide()"/>
                 </h:panelGroup>
